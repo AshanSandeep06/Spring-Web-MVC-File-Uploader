@@ -28,7 +28,7 @@ public class JPAConfig {
     private Environment environment;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean factoryBean(DataSource dataSource, JpaVendorAdapter vendor){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter vendor) {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setPackagesToScan(environment.getRequiredProperty("config.entity"));
         factory.setDataSource(dataSource);
@@ -37,7 +37,7 @@ public class JPAConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource bds = new DriverManagerDataSource();
         bds.setDriverClassName(environment.getRequiredProperty("config.driver"));
         bds.setUrl(environment.getRequiredProperty("config.url"));
@@ -47,7 +47,7 @@ public class JPAConfig {
     }
 
     @Bean
-    public JpaVendorAdapter jpaVendorAdapter(){
+    public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateVendor = new HibernateJpaVendorAdapter();
         hibernateVendor.setDatabasePlatform(environment.getRequiredProperty("config.dialect"));
         hibernateVendor.setDatabase(Database.MYSQL);
@@ -57,7 +57,7 @@ public class JPAConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager();
     }
 }

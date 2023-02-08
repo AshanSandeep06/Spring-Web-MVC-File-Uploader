@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    width: 900px;
+    height: 600px;
+    border-radius: 36px;
+
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+form {
+    width: 100%;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.5px);
+    border: 1px solid rgba(216, 194, 194, 0.38);
+}
+
+img {
+    background: url(/assets/img/img.jpg);
+    background-position: center;
+    background-size: cover !important;
+    width: 480px;
+    height: 430px;
+    margin-top: 22px;
+}
+
+form > div:first-child {
+    gap: 18px;
+    margin-top: 13px;
+}
+
+form > div:first-child > div:first-child > input:nth-child(1) {
+    margin-right: 43px;
+    padding: 0;
+    max-width: 17.85% !important;
+    position: relative;
+    left: 34px;
+    top: 0.7px;
+}

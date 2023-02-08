@@ -8,12 +8,26 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
 </head>
-<body>
+<body class="container-fluid">
+<main class="row d-flex justify-content-center border border-1 border-white">
+    <div>
+        <img id="uploaded_image">
+    </div>
 
+    <form>
+        <div class="d-flex flex-column align-items-center">
+            <div class="d-flex justify-content-center">
+                <input id="fileChooser" type="file" class="col-5">
+                <input id="file_path" type="text" class="col-6">
+            </div>
 
+            <button type="button" class="btn btn-success">Upload File</button>
+        </div>
+    </form>
+</main>
 
-<script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 <script src="controller/IndexController.js"></script>
 </body>
 </html>

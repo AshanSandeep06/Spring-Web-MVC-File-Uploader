@@ -3,8 +3,9 @@ package lk.ijse.spring.config;
 import lk.ijse.spring.repo.FileRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -21,11 +22,15 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = FileRepo.class)
+@PropertySource("classpath:application.properties")
 public class JPAConfig {
+    @Autowired
+    private Environment environment;
+
     @Bean
     public LocalContainerEntityManagerFactoryBean factoryBean(DataSource dataSource, JpaVendorAdapter vendor){
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setPackagesToScan("lk.ijse.spring.entity");
+        factory.setPackagesToScan(environment.getRequiredProperty("config.entity"));
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(vendor);
         return factory;
@@ -34,17 +39,17 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource bds = new DriverManagerDataSource();
-        bds.setDriverClassName("com.mysql.jdbc.Driver");
-        bds.setUrl("jdbc:mysql://localhost:3306/File_upload-db?createDatabaseIfNotExist=true");
-        bds.setUsername("root");
-        bds.setPassword("1234");
+        bds.setDriverClassName(environment.getRequiredProperty("config.driver"));
+        bds.setUrl(environment.getRequiredProperty("config.url"));
+        bds.setUsername(environment.getRequiredProperty("config.username"));
+        bds.setPassword(environment.getRequiredProperty("config.password"));
         return bds;
     }
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter hibernateVendor = new HibernateJpaVendorAdapter();
-        hibernateVendor.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        hibernateVendor.setDatabasePlatform(environment.getRequiredProperty("config.dialect"));
         hibernateVendor.setDatabase(Database.MYSQL);
         hibernateVendor.setGenerateDdl(true);
         hibernateVendor.setShowSql(true);

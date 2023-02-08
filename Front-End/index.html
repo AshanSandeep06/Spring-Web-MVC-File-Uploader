@@ -14,14 +14,14 @@
         <img id="uploaded_image">
     </div>
 
-    <form>
+    <form id="fileUploadingForm">
         <div class="d-flex flex-column align-items-center">
             <div class="d-flex justify-content-center">
-                <input id="fileChooser" type="file" class="col-5">
-                <input id="file_path" type="text" class="col-6">
+                <input id="fileChooser" type="file" class="col-5" name="fileChooser">
+                <input id="file_path" type="text" class="col-6" name="filePath">
             </div>
 
-            <button type="button" class="btn btn-success">Upload File</button>
+            <button id="btnFileUpload" type="button" class="btn btn-success">Upload File</button>
         </div>
     </form>
 </main>

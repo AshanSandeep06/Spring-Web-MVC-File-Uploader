@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/file_upload")
+@CrossOrigin
 public class FileUploadController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping
-    public ResponseEntity<ResponseUtil> getFile() {
+    @PostMapping
+    public ResponseEntity<ResponseUtil> uploadFile(@RequestParam("fileChooser") MultipartFile file) {
+        System.out.println(file);
         return new ResponseEntity<ResponseUtil>(new ResponseUtil(), HttpStatus.OK);
     }
 }

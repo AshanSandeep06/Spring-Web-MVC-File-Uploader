@@ -16,11 +16,7 @@ public class FileServiceImpl implements FileService {
     @Autowired
     private ModelMapper mapper;
 
-    public void uploadFile() {
-
-    }
-
-    public String getFile(String file) {
+    public String uploadFile() {
         return null;
     }
 }

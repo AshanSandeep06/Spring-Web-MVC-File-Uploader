@@ -1,5 +1,6 @@
 package lk.ijse.spring.config;
 
+import lk.ijse.spring.repo.FileRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +20,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories()
+@EnableJpaRepositories(basePackageClasses = FileRepo.class)
 public class JPAConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean factoryBean(DataSource dataSource, JpaVendorAdapter vendor){

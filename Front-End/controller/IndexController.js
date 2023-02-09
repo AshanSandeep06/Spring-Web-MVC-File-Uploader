@@ -6,18 +6,19 @@ $('#fileChooser').change(function () {
     console.log(filePath);
 });
 
-$('#btnFileUpload').on('click', function (){
+$('#btnFileUpload').on('click', function () {
     var formData = new FormData($('#fileUploadingForm')[0]);
 
     $.ajax({
         url: baseUrl + "file_upload",
-        method: "post",
+        type: "post",
         data: formData,
         contentType: false,
         processData: false,
 
-        success: function (res){
-            console.log(res);
+        success: function (response) {
+            $("#uploaded_image").css('background', 'none');
+            $('#uploaded_image').attr('src', `data:image/png;base64,${response}`);
         }
     });
 });

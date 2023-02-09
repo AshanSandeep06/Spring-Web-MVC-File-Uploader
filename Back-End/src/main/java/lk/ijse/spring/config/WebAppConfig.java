@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackageClasses = {FileUploadController.class, AppWideExceptionHandler.class})
 public class WebAppConfig {
     @Bean
-    public CommonsMultipartResolver multipartResolver(){
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setMaxUploadSize(100000);
-        return resolver;
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(500000);
+        return multipartResolver;
     }
 }
